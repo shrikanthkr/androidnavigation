@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Navigation</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_page_two">Hello Page Two</string>
+    <string name="enter_some_text">Enter some text</string>
+    <string name="done">Done</string>
+    <string name="to_page_three">To Three</string>
+    <string name="hallo_page_three">Hello Page Three</string>
+</resources>
