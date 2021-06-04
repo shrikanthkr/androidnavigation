@@ -38,26 +38,35 @@ class PageTwo : Fragment() {
         val button: Button = view.findViewById(R.id.done)
         val toThree: Button = view.findViewById(R.id.toThree)
         val text: EditText = view.findViewById(R.id.editTextTextPersonName)
+        val navController = findNavController()
+        text.setText("${pageTwoArgs.parcel.count}")
         button.setOnClickListener {
-            findNavController().previousBackStackEntry!!.savedStateHandle.set(
+            navController.previousBackStackEntry!!.savedStateHandle.set(
                 "key",
                 text.text.toString()
             )
-            findNavController().popBackStack()
+            navController.popBackStack()
         }
         toThree.setOnClickListener {
             val action = PageTwoDirections.actionPageTwoToPageTwo3()
-            findNavController().navigate(action)
+            navController.navigate(action)
         }
-        findNavController().currentBackStackEntry!!.savedStateHandle.getLiveData<String>(
+        navController.currentBackStackEntry!!.savedStateHandle.getLiveData<String>(
             "key",
         ).observe(viewLifecycleOwner) {
             text.setText(it)
-            findNavController().previousBackStackEntry!!.savedStateHandle.set(
+            navController.previousBackStackEntry!!.savedStateHandle.set(
                 "key",
                 text.text.toString()
             )
-            findNavController().popBackStack()
+            navController.popBackStack()
+        }
+
+        navController.currentBackStackEntry!!.savedStateHandle.getLiveData<String>(
+            "pass",
+        ).observe(viewLifecycleOwner) {
+
+            navController.navigate(PageTwoDirections.actionPageTwoToPageTwo4(it))
         }
     }
 }
